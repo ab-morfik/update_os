@@ -14,5 +14,5 @@
     - name: Reboot the server (if kernel update is installed)
       reboot:
         post_reboot_delay: 30  # Optional: Wait 30 seconds after reboot
-        when: ansible_kernel | search("reboot")  # Reboot only if kernel update requires it
+      when: ansible_kernel | search("reboot")  # Reboot only if kernel update requires it
 ...
