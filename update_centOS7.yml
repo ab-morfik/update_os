@@ -3,16 +3,12 @@
   become: true  # Requires root privileges
 
   tasks:
-    - name: Update package list cache
-      yum_update_cache:
-        state: present
-
     - name: Update all packages
       yum:
         state: latest
         exclude:  # Optional: Exclude specific packages from update
           - kernel  # Example: Exclude kernel updates
-      when: ansible_distribution_major_version == "7.9"
+      when: ansible_distribution_major_version == "7.9" and ansible_distribution == "CentOS"
       
 
     - name: Reboot the server (if kernel update is installed)
