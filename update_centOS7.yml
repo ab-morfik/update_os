@@ -3,7 +3,7 @@
   become: true  # Requires root privileges
 
   tasks:
-    - name: Upgrade all packages, excluding kernel & foo related packages
+    - name: Upgrade all packages, excluding kernel
       yum:
         name: '*'
         state: latest
