@@ -8,7 +8,7 @@
         name: '*'
         state: latest
         exclude: kernel*
-      when: ansible_distribution_major_version == "7.9" and ansible_distribution == "CentOS"
+      when: ansible_distribution_version == "7.9" and ansible_distribution == "CentOS"
       
 
     - name: Reboot the server (if kernel update is installed)
