@@ -4,7 +4,7 @@
 
   tasks:
     - name: Upgrade all packages, excluding kernel & foo related packages
-      ansible.builtin.yum:
+      yum:
         name: '*'
         state: latest
         exclude: kernel*
