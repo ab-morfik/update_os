@@ -1,0 +1,22 @@
+---
+- hosts: all  # This targets all hosts in your inventory
+  become: true  # Requires root privileges
+
+  tasks:
+    - name: Update package list cache
+      yum_update_cache:
+        state: present
+
+    - name: Update all packages
+      yum:
+        state: latest
+        exclude:  # Optional: Exclude specific packages from update
+          - kernel  # Example: Exclude kernel updates
+      when: ansible_distribution_major_version == "7.9"
+      
+
+    - name: Reboot the server (if kernel update is installed)
+      reboot:
+        post_reboot_delay: 30  # Optional: Wait 30 seconds after reboot
+        when: ansible_kernel | search("reboot")  # Reboot only if kernel update requires it
+...
