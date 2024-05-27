@@ -1,6 +1,6 @@
 ---
-- hosts: all  # This targets centos7 hosts in your inventory
-  become: true  # Requires root privileges
+- hosts: all
+  become: true
 
   tasks:
     - name: Upgrade all packages, excluding kernel
@@ -13,6 +13,6 @@
 
     - name: Reboot the server (if kernel update is installed)
       reboot:
-        reboot_timeout: 3600 # Optional: Wait x seconds after reboot
+        reboot_timeout: 3600
       
 ...
