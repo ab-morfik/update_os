@@ -1,0 +1,18 @@
+---
+- hosts: all  # This targets centos7 hosts in your inventory
+  become: true  # Requires root privileges
+
+  tasks:
+    - name: Upgrade all packages, excluding kernel
+      yum:
+        name: '*'
+        state: latest
+        exclude: kernel*
+      when: ansible_distribution_major_version == "8" and ansible_distribution == "Rocky"
+      
+
+    - name: Reboot the server (if kernel update is installed)
+      reboot:
+        reboot_timeout: 3600 # Optional: Wait x seconds after reboot
+      
+...
