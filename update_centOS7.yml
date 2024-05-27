@@ -1,5 +1,5 @@
 ---
-- hosts: centos7  # This targets centos7 hosts in your inventory
+- hosts: CENTOS7  # This targets centos7 hosts in your inventory
   become: true  # Requires root privileges
 
   tasks:
