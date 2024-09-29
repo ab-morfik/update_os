@@ -1,0 +1,18 @@
+---
+- hosts: all:!CONTROL
+  become: true 
+
+  tasks:
+    - name: Upgrade all packages, excluding kernel
+      yum:
+        name: '*'
+        state: latest
+        exclude: kernel*
+      when: ansible_distribution_major_version == "22.04" and ansible_distribution == "Ubuntu"
+      
+
+    - name: Reboot the server
+      reboot:
+        reboot_timeout: 3600
+      
+...
